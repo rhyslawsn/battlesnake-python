@@ -57,7 +57,7 @@ class Game():
             elif x-1 >= 0 and self.board[y,x-1] == 0:
                 return "left"
             elif y+1 < self.height and self.board[y+1,x] == 0:
-                return "dowm"
+                return "down"
             else:
                 return "up"
         return best_move
