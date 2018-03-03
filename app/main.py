@@ -1,8 +1,8 @@
 import bottle
 import os
 import random
-from game import Game
-from taunts import taunts
+from game.py import Game
+from taunts.py import taunts
 
 
 @bottle.route('/static/<path:path>')
@@ -47,7 +47,7 @@ def move():
     taunt = taunts(game1.snakes[0]["health_points"])
 
     return {
-        'move': 'right',
+        'move': move,
         'taunt': taunt
     }
 
