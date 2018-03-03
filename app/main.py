@@ -28,9 +28,9 @@ def start():
         'color': '#FF0AD2',
         'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
         'head_url': head_url,
-        'name': 'Elliptic Snake',
+        'name': 'TLC',
         'head_type': 'safe',
-        'tail_type': 'curled'
+        'tail_type': ''
     }
 
 
