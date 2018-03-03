@@ -47,7 +47,7 @@ def move():
     taunt = taunts(game1.snakes[0]["health_points"])
 
     return {
-        'move': move,
+        'move': 'right',
         'taunt': taunt
     }
 
