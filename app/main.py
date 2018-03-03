@@ -1,5 +1,8 @@
 import bottle
 import os
+import random
+from game import Game
+from taunts import taunts
 
 
 @bottle.route('/static/<path:path>')
@@ -7,50 +10,45 @@ def static(path):
     return bottle.static_file(path, root='static/')
 
 
-@bottle.get('/')
-def index():
+@bottle.post('/start')
+def start():
+    data = bottle.request.json
+    game_id = data['game_id']
+    board_width = data['width']
+    board_height = data['height']
+
     head_url = '%s://%s/static/head.png' % (
         bottle.request.urlparts.scheme,
         bottle.request.urlparts.netloc
     )
 
-    return {
-        'color': '#00ff00',
-        'head': head_url
-    }
-
-
-@bottle.post('/start')
-def start():
-    data = bottle.request.json
-
     # TODO: Do things with data
 
     return {
-        'taunt': 'battlesnake-python!'
+        'color': '#FF0AD2',
+        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'head_url': head_url,
+        'name': 'Elliptic Snake',
+        'head_type': 'safe',
+        'tail_type': 'curled'
     }
 
 
 @bottle.post('/move')
 def move():
     data = bottle.request.json
+    game1 = Game(data['height'],data['width'],data['game_id'])
+    game1.parse_data(data)
+    move = game1.move()
 
     # TODO: Do things with data
+    directions = ['up', 'down', 'left', 'right']
+    
+    taunt = taunts(game1.snakes[0]["health_points"])
 
     return {
-        'move': 'north',
-        'taunt': 'battlesnake-python!'
-    }
-
-
-@bottle.post('/end')
-def end():
-    data = bottle.request.json
-
-    # TODO: Do things with data
-
-    return {
-        'taunt': 'battlesnake-python!'
+        'move': move,
+        'taunt': taunt
     }
 
 
