@@ -1,8 +1,8 @@
 import bottle
 import os
 import random
-from game.py import Game
-from taunts.py import taunts
+from game import Game
+from taunts import taunts
 
 
 @bottle.route('/static/<path:path>')
