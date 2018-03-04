@@ -26,7 +26,7 @@ def start():
 
     return {
         'color': '#FF0AD2',
-        'taunt': '{} ({}x{})'.format(game_id, board_width, board_height),
+        'taunt': 'Let\'s getter started',
         'head_url': head_url,
         'name': 'TLC',
         'head_type': 'safe',
